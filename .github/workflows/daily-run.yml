@@ -44,7 +44,7 @@ jobs:
 
   keepalive-job:
     name: Keepalive Workflow
-    if: github.event_name == 'schedule' # 确保只在计划任务触发时运行此 job
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' #
     runs-on: ubuntu-latest
     permissions:
       actions: write # 必须，给予 GITHUB_TOKEN 操作其他 workflow 的权限
