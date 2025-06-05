@@ -12,14 +12,14 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # <-- 更新到 v4
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v5 # <-- 更新到 v5
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11.3'   # 版本号可以保留，或者用 '3.11'
+          python-version: '3.11.3' # 或者 '3.11'
           cache: 'pip'
-          cache-dependency-path: 'requirements.txt' # <-- 增加这一行
+          cache-dependency-path: 'requirements.txt'
 
       - name: Install dependencies
         run: |
@@ -44,9 +44,13 @@ jobs:
 
   keepalive-job:
     name: Keepalive Workflow
+    if: github.event_name == 'schedule' # 确保只在计划任务触发时运行此 job
     runs-on: ubuntu-latest
     permissions:
-      actions: write
+      actions: write # 必须，给予 GITHUB_TOKEN 操作其他 workflow 的权限
     steps:
-      - uses: actions/checkout@v4 # <-- 这里也建议更新，保持一致性
-      - uses: gautamkrishnar/keepalive-workflow@v2
+      # 对于 liskin/gh-workflow-keepalive，通常不需要 actions/checkout 步骤
+      - name: Workflow Keepalive
+        uses: liskin/gh-workflow-keepalive@v1.2.1
+        # 注意：这里没有 'with: token:'，因为我们优先尝试使用默认的 GITHUB_TOKEN
+        # 如果这种方式长期无效，再考虑配置个人的 PAT (Personal Access Token)
