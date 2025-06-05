@@ -12,13 +12,14 @@ jobs:
     
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        
+        uses: actions/checkout@v4 # <-- 更新到 v4
+
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5 # <-- 更新到 v5
         with:
-          python-version: 3.11.3
+          python-version: '3.11.3'   # 版本号可以保留，或者用 '3.11'
           cache: 'pip'
+          cache-dependency-path: 'requirements.txt' # <-- 增加这一行
 
       - name: Install dependencies
         run: |
@@ -47,5 +48,5 @@ jobs:
     permissions:
       actions: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4 # <-- 这里也建议更新，保持一致性
       - uses: gautamkrishnar/keepalive-workflow@v2
