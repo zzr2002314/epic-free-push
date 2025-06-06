@@ -51,6 +51,4 @@ jobs:
     steps:
       # 对于 liskin/gh-workflow-keepalive，通常不需要 actions/checkout 步骤
       - name: Workflow Keepalive
-        uses: zzr2002314/gh-workflow-keepalive@v1.2.1
-        # 注意：这里没有 'with: token:'，因为我们优先尝试使用默认的 GITHUB_TOKEN
-        # 如果这种方式长期无效，再考虑配置个人的 PAT (Personal Access Token)
+        uses: zzr2002314/gh-workflow-keepalive@f72ff1af56038448c585c54c16a760f329d2a659
