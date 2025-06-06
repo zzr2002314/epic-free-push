@@ -51,4 +51,4 @@ jobs:
     steps:
       # 对于 liskin/gh-workflow-keepalive，通常不需要 actions/checkout 步骤
       - name: Workflow Keepalive
-        uses: zzr2002314/gh-workflow-keepalive@f72ff1af56038448c585c54c16a760f329d2a659
+        uses: zzr2002314/gh-workflow-keepalive@main
